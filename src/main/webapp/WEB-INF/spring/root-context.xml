@@ -45,12 +45,12 @@
    
    <tx:annotation-driven/>
    
-   <mybatis-spring:scan base-package="org.zerock.mapper"/>
+   <mybatis-spring:scan base-package="org.zerock.ehwls99.mapper"/>
 
 	<context:annotation-config></context:annotation-config>
    
-   <context:component-scan base-package="org.zerock.service"></context:component-scan>
-   <context:component-scan base-package="org.zerock.aop"></context:component-scan>
+   <context:component-scan base-package="org.zerock.ehwls99.service"></context:component-scan>
+   <context:component-scan base-package="org.zerock.ehwls99.aop"></context:component-scan>
    <context:component-scan base-package="org.zerock.task"></context:component-scan>
    
    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
