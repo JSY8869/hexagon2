@@ -23,7 +23,8 @@ public class SaleVO {
 	private String productName;
 	
 	// 금액합계 product Table (quantity * price = supply_price) + supply_price * 10%
-	private int priceSum;
+	// private int priceSum;
+	private long priceSum;
 	
 	// 거래유형명 product_sale Table의 type
 	private String type;
