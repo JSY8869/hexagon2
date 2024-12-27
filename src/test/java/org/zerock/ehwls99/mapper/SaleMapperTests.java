@@ -22,9 +22,8 @@ public class SaleMapperTests {
 	
 	@Test
 	public void testGetList() {
-		// mapper.getList().forEach(sale -> log.info(sale));
 		List<SaleVO> saleList = mapper.getList();
-		log.info("Sale List: " + saleList);
+		saleList.forEach(sale -> log.info(sale));
 	}
 	
 }

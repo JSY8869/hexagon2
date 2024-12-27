@@ -4,16 +4,15 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.zerock.ehwls99.mapper.SaleMapper">
 
-	<!-- 현재 데이터가 나오지 않고 있음. 쿼리문에는 문제가 없는거 같은데.... -->
 	<select id="getList" resultType="org.zerock.ehwls99.domain.SaleVO">
 	    <![CDATA[
-	    select
-	        p.created_at AS product_created_at,
-	        c.trade_name AS client_trade_name,
-	        p.name AS product_name,
-	        TO_NUMBER(p.supply_price) + (TO_NUMBER(p.supply_price) * 0.1) AS total_supply_price,
-	        ps.type AS sale_type,
-	        sw.name AS warehouse_name
+		select
+	        p.created_at AS createdAt,
+	        c.trade_name AS tradeName,
+	        p.name AS productName,
+	        TO_NUMBER(p.supply_price) + (TO_NUMBER(p.supply_price) * 0.1) AS priceSum,
+	        ps.type AS type,
+	        sw.name AS warehouseName
 	    from
 	        product p
 	    join

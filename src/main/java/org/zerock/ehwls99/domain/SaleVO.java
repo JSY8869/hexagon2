@@ -1,14 +1,11 @@
 package org.zerock.ehwls99.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-@Data
-@AllArgsConstructor // 클래스에 모든 필드를 초기화하는 생성자를 자동으로 생성
-@NoArgsConstructor // 클래스에 파라미터가 없는 기본 생성자를 자동으로 생성
+@Getter
 public class SaleVO {
 	
 	// 생성일, 거래처명, 품목명, 금액합계, 거래유형명, 출하창고명
@@ -23,8 +20,7 @@ public class SaleVO {
 	private String productName;
 	
 	// 금액합계 product Table (quantity * price = supply_price) + supply_price * 10%
-	// private int priceSum;
-	private long priceSum;
+	private Long priceSum;
 	
 	// 거래유형명 product_sale Table의 type
 	private String type;
@@ -32,5 +28,22 @@ public class SaleVO {
 	// 출하창고명 shipment_warehouse Table의 name
 	private String warehouseName;
 	
+	
+	// 날짜 포맷
+	public String getFormattedCreatedAt() {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		return formatter.format(this.createdAt);
+	}
+	
+	// 포맷 적용
+    @Override
+    public String toString() {
+        return "createdAt=" + getFormattedCreatedAt() +  // 포맷된 값 사용
+               ", tradeName=" + tradeName +
+               ", productName=" + productName +
+               ", priceSum=" + priceSum +
+               ", type=" + type +
+               ", warehouseName=" + warehouseName;
+    }
 	
 }

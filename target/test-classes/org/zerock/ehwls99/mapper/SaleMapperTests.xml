@@ -2,12 +2,12 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.zerock.ehwls99.mapper.SaleMapper">
+<mapper namespace="org.zerock.ehwls99.mapper.SaleMapperTests">
 
 	<select id="getList" resultType="org.zerock.ehwls99.domain.SaleVO">
 	    <![CDATA[
 		select
-	        p.created_at AS createdAt,
+	        TO_CHAR(p.created_at, 'YYYY-MM-DD') AS createdAt,
 	        c.trade_name AS tradeName,
 	        p.name AS productName,
 	        TO_NUMBER(p.supply_price) + (TO_NUMBER(p.supply_price) * 0.1) AS priceSum,
@@ -28,7 +28,7 @@
 	    left join
 	        product_sale ps ON os.product_sale = ps.id
 	    group by
-	        p.created_at, c.trade_name, p.name, p.supply_price, ps.type, sw.name
+	        TO_CHAR(p.created_at, 'YYYY-MM-DD'), c.trade_name, p.name, p.supply_price, ps.type, sw.name
 	    ]]>
 	</select>
 
