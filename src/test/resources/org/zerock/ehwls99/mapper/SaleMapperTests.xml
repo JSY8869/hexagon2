@@ -7,7 +7,7 @@
 	<select id="getList" resultType="org.zerock.ehwls99.domain.SaleVO">
 	    <![CDATA[
 		select
-	        TO_CHAR(p.created_at, 'YYYY-MM-DD') AS createdAt,
+	        p.created_at AS createdAt,
 	        c.trade_name AS tradeName,
 	        p.name AS productName,
 	        TO_NUMBER(p.supply_price) + (TO_NUMBER(p.supply_price) * 0.1) AS priceSum,
@@ -28,8 +28,8 @@
 	    left join
 	        product_sale ps ON os.product_sale = ps.id
 	    group by
-	        TO_CHAR(p.created_at, 'YYYY-MM-DD'), c.trade_name, p.name, p.supply_price, ps.type, sw.name
+	        p.created_at, c.trade_name, p.name, p.supply_price, ps.type, sw.name
 	    ]]>
 	</select>
-
+	
 </mapper>

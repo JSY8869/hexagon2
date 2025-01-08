@@ -1,6 +1,6 @@
 package org.zerock.ehwls99.domain;
 
-import java.text.SimpleDateFormat;
+// import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import lombok.Getter;
@@ -30,20 +30,20 @@ public class SaleVO {
 	
 	
 	// 날짜 포맷
-	public String getFormattedCreatedAt() {
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		return formatter.format(this.createdAt);
-	}
+//	public String getFormattedCreatedAt() {
+//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//		return formatter.format(this.createdAt);
+//	}
 	
 	// 포맷 적용
-    @Override
-    public String toString() {
-        return "createdAt=" + getFormattedCreatedAt() +  // 포맷된 값 사용
-               ", tradeName=" + tradeName +
-               ", productName=" + productName +
-               ", priceSum=" + priceSum +
-               ", type=" + type +
-               ", warehouseName=" + warehouseName;
-    }
+//    @Override
+//    public String toString() {
+//        return "createdAt=" + getFormattedCreatedAt() +  // 포맷된 값 사용
+//               ", tradeName=" + tradeName +
+//               ", productName=" + productName +
+//               ", priceSum=" + priceSum +
+//               ", type=" + type +
+//               ", warehouseName=" + warehouseName;
+//    }
 	
 }

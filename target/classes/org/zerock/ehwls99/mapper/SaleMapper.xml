@@ -31,5 +31,5 @@
 	        p.created_at, c.trade_name, p.name, p.supply_price, ps.type, sw.name
 	    ]]>
 	</select>
-
+	
 </mapper>
