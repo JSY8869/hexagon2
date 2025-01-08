@@ -22,4 +22,27 @@ public class SaleServiceImpl implements SaleService {
 		return mapper.getList();
 	}
 	
+	@Override
+	public void deleteSale(int productSaleId) {
+		log.info("deleteSale for productSaleId: " + productSaleId);
+		
+		// product_sale에서 order_sale의 id 찾기
+		List<Integer> orderSaleIds = mapper.findOrderSaleIdsByProductSaleId(productSaleId);
+		
+		for (Integer orderSaleId : orderSaleIds) {
+			// order_sale의 수량 확인
+			int quantity = mapper.findQuantityByOrderSaleId(orderSaleId);
+			
+			// product의 재고 수량 업데이트
+			int productId = mapper.findProductIdByOrderSaleId(orderSaleId);
+			mapper.updateProductQuantity(productId, quantity);
+			
+			// order_sale 삭제
+			mapper.deleteOrderSaleById(orderSaleId);
+		}
+		
+		// product_sale 삭제
+		mapper.deleteProductSaleById(productSaleId);
+	}
+	
 }

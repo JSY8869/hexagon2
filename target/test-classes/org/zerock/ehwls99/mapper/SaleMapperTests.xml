@@ -32,4 +32,37 @@
 	    ]]>
 	</select>
 	
+	<!-- product_sale.id로 order_sale.id를 찾는 쿼리 -->
+	<select id="findOrderSaleIdsByProductSaleId">
+		select os.id
+		from order_sale os
+		where os.product_sale = #{productSaleId}
+	</select>
+	
+	<!-- order_sale.id로 수량을 확인하는 쿼리 -->
+	<select id="findQuantityByOrderSaleId" parameterType="int" resultType="int">
+	    SELECT os.quantity
+	    FROM order_sale os
+	    WHERE os.id = #{orderSaleId}
+	</select>
+	
+	<!-- order_sale의 product와 quantity를 활용해 재고를 업데이트하는 쿼리 -->
+	<update id="updateProductQuantity" parameterType="map">
+	    UPDATE product
+	    SET quantity = quantity + #{quantity}
+	    WHERE id = #{productId}
+	</update>
+	
+	<!-- order_sale.id로 데이터를 삭제하는 쿼리 -->
+	<delete id="deleteOrderSaleById" parameterType="int">
+	    DELETE FROM order_sale
+	    WHERE id = #{orderSaleId}
+	</delete>
+	
+	<!-- product_sale.id로 데이터를 삭제하는 쿼리 -->
+	<delete id="deleteProductSaleById" parameterType="int">
+	    DELETE FROM product_sale
+	    WHERE id = #{productSaleId}
+	</delete>
+	
 </mapper>

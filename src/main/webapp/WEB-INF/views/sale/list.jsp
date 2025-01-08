@@ -192,4 +192,48 @@
         </div>
     </div>
 </body>
+<script type="text/javascript">
+    // selectAll 체크박스 클릭 시 모든 selectOne 체크박스 선택/해제
+    document.getElementById('selectAll').addEventListener('change', function () {
+        const isChecked = this.checked;
+        const checkboxes = document.querySelectorAll('#selectOne');
+        checkboxes.forEach(checkbox => checkbox.checked = isChecked);
+    })
+    
+    // 선택 삭제 버튼 클릭 시 선택된 행 삭제
+    document.querySelector('.footer_menu button:nth-child(3)').addEventListener('click', function () {
+        const checkboxes = document.querySelectorAll('#selectOne:checked');
+        if (checkboxes.length === 0) {
+            window.alert("삭제할 행을 선택하세요.");
+            return;
+        }
+        
+        // 선택된 행의 ID 수집
+        checkboxes.forEach(checkbox => {
+            const row = checkbox.closest('tr');
+            row.remove(); // UI에서 행 삭제
+        });
+        
+        // 서버로 삭제 요청 보내기
+        fetch('/deleteSales', {
+        	method: 'POST',
+        	headers: {
+        		'Content-Type': 'application/json'
+        	},
+        	body: JSON.stringify({ ids: ids }) // 선택된 ID를 JSON 형식으로 전달
+        })
+        .then(response => response.json())
+        .then(data => {
+        	if (data.success) {
+        		alert("선택된 행이 삭제 되었습니다.");
+        	} else {
+        		alert("삭제 중 오류가 발생했습니다.");
+        	}
+        })
+        .catch(error => 
+        	console.error('Error: ', error);
+        	alert("서버와 통신 중 문제가 발생했습니다.");
+        })
+    })
+</script>
 </html>
